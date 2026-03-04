@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEAL MAGICIAN</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    body {
+      display: flex;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: url("image.jpg");
+      background-size: cover; 
+      overflow: hidden;
+    }
+
+    .container {
+      font-family: 'Pacifico', cursive;
+      font-size: 7rem;
+      padding-left: 100px;
+      color: #fff;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      display: flex;
+      position: relative;
+    }
+
+    .letter {
+      text-align: start;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 0.5s forwards;
+    }
+
+    #chef-hat {
+      position: absolute;
+      width: 100px; /* Adjust size as needed */
+      top: 1px; /* Position above the text */
+      left: calc(105% - 90px); /* Slightly to the right of the last letter */
+      opacity: 0;
+      transform: scale(0.5);
+      animation: fadeInScale 0.5s forwards;
+      animation-delay: 3s; /* Delays the appearance after text animation */
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="text" class="container">
+    <img id="chef-hat" src="chef.png" alt="Chef Hat">
+  </div>
+
+  <script>
+    const text = "Meal Magician";
+    const container = document.getElementById('text');
+
+    // Check if the page was visited in this session
+    if (sessionStorage.getItem('visited') === 'true') {
+      // Redirect to index.html if the page is refreshed
+      sessionStorage.removeItem('visited'); // Clear the session flag
+      window.location.href = "index.html";
+    } else {
+      // Mark as visited for this session
+      sessionStorage.setItem('visited', 'true');
+    }
+
+    // Create each letter span with animation delay
+    text.split('').forEach((char, index) => {
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.className = 'letter';
+      span.style.animationDelay = `${index * 0.1}s`;
+      container.appendChild(span);
+    });
+
+    // Total delay calculation: letters * delay per letter
+    const totalDelay = text.length * 0.1; // Adjust if needed
+    const chefHat = document.getElementById('chef-hat');
+    chefHat.style.animationDelay = `${totalDelay}s`; // Ensure image appears after text
+
+    // Redirect to recipe.html after 2 seconds
+    setTimeout(() => {
+      window.location.href = "recipe.html";
+    }, 2000);
+  </script>
+</body>
+</html>

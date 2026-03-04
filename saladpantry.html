@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Magician</title>
+  <style>
+    body {
+      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      background: url("image.jpg");
+    }
+
+    #app {
+      display: flex;
+      height: 90%;
+      width: 90%;
+      border: 1px solid #ccc;
+      overflow: hidden;
+    }
+
+    #pantry {
+      width: 30%;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      /* background-color: #FFC0CB; */
+      background: url("image.jpg");
+    }
+    
+    #mealmagician  {
+      width: 70%;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      /* background-color: #FFC0CB; */
+      background: url("image.jpg");
+    }
+
+
+    #pantry {
+      border-right: 2px solid #fff;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+    }
+
+    #pantry-search, #mealmagician-search {
+      margin-bottom: 15px;
+    }
+
+    #pantry-search input, #mealmagician-search input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      
+    }
+
+    #pantry-essentials {
+      margin-top: 20px;
+      color: black;
+    }
+
+    .ingredient-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+    }
+
+    .ingredient {
+      padding: 5px 10px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    #filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    #filters button {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+      background-color: #fff;
+    }
+
+    /* Add a vertical scrollbar between columns */
+    #app {
+      overflow-x: hidden;
+    }
+
+    #pantry, #mealmagician {
+      overflow-y: auto;
+      height: 100%;
+      color: white;
+      font-style:italic;
+    }
+
+    #pantry::-webkit-scrollbar, #mealmagician::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #pantry::-webkit-scrollbar-thumb, #mealmagician::-webkit-scrollbar-thumb {
+       background: gray; 
+      
+      border-radius: 4px;
+    }
+
+    #pantry::-webkit-scrollbar-thumb:hover, #mealmagician::-webkit-scrollbar-thumb:hover {
+      background:gold;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="pantry">
+      <h2>Pantry</h2>
+      <div id="pantry-search">
+        <input type="text" placeholder="Add/remove/paste ingredients">
+      </div>
+      <div id="pantry-essentials">
+        <h3 style="color: white;">Pantry Essentials</h3>
+           <div class="ingredient-list">
+            <div class="ingredient">lettuce</div>
+            <div class="ingredient">spinach</div>
+            <div class="ingredient">kale</div>
+            <div class="ingredient">arugula</div>
+            <div class="ingredient">tomato</div>
+            <div class="ingredient">cucumber</div>
+            <div class="ingredient">carrot</div>
+            <div class="ingredient">bell peppers</div>
+            <div class="ingredient">onion</div>
+            <div class="ingredient">avocado</div>
+            <div class="ingredient">corn</div>
+            <div class="ingredient">potatoes</div>
+            <div class="ingredient">black beans</div>
+            <div class="ingredient">chickpeas</div>
+            <div class="ingredient">olives</div>
+            <div class="ingredient">radish</div>
+            <div class="ingredient">broccoli</div>
+            <div class="ingredient">cauliflower</div>
+            <div class="ingredient">zucchini</div>
+            <div class="ingredient">mushrooms</div>
+            <div class="ingredient">tofu</div>
+            <div class="ingredient">quinoa</div>
+            <div class="ingredient">nuts</div>
+            <div class="ingredient">seeds</div>
+            <div class="ingredient">cranberries</div>
+            <div class="ingredient">raisins</div>
+            <div class="ingredient">feta cheese</div>
+            <div class="ingredient">parmesan cheese</div>
+            <div class="ingredient">basil leaves</div>
+            <div class="ingredient">parsley</div>
+            <div class="ingredient">cilantro</div>
+            <div class="ingredient">mint leaves</div>
+            <div class="ingredient">rice vinegar</div>
+            <div class="ingredient">balsamic vinegar</div>
+            <div class="ingredient">olive oil</div>
+            <div class="ingredient">lemon juice</div>
+            <div class="ingredient">honey</div>
+            <div class="ingredient">salt</div>
+            <div class="ingredient">black pepper</div>
+            <div class="ingredient">chili powder</div>
+            <div class="ingredient">garlic powder</div>
+            
+          
+        </div>
+      </div>
+    </div>
+
+    <div id="mealmagician">
+      <h2>Meal Magician</h2>
+      <div id="mealmagician-search">
+        <input type="text" placeholder="Find...">
+      </div>
+      
+    </div>
+  </div>
+
+  <script>
+    // Add event listeners for filter buttons (optional)
+    const filterButtons = document.querySelectorAll('#filters button');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Handle filter logic here
+      });
+    });
+  </script>
+  <script src="pantry_interaction.js"></script>
+</body>
+</html>

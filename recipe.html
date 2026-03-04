@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("image.jpg");
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .flex-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 250px; /* Adjusted for a larger flex item */
+    height: 200px; /* Adjusted for a larger flex item */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .flex-item img {
+    width: 100%; /* Make the image fill the width */
+    height: 100%; /* Make the image fill the height */
+    object-fit: cover; /* Ensure the image fits without distortion */
+    border-radius: 10px; /* Match the flex-item border radius */
+  }
+
+  .buttons-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 60px;
+  }
+
+  .action-button {
+    padding: 10px 35px;
+    background-color: #03080c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .action-button:hover {
+    background-color: gold;
+  }
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="flex-item" data-name="salad">
+      <img src="salad.png" alt="Salad">
+    </div>
+    <div class="flex-item" data-name="sweet">
+      <img src="sweet.jpg" alt="Sweet">
+    </div>
+    <div class="flex-item" data-name="burger">
+      <img src="curry.jpg" alt="Burger">
+    </div>
+    <div class="flex-item" data-name="pasta">
+      <img src="npic.jpg" alt="Pasta">
+    </div>
+    <div class="flex-item" data-name="dessert">
+      <img src="juice.png" alt="Dessert">
+    </div>
+  </div>
+
+  <!-- Buttons outside the flex container -->
+  <div class="buttons-container">
+    <button class="action-button" data-target="salad">View Salad Recipe</button>
+    <button class="action-button" data-target="sweet">View Sweet Recipe</button>
+    <button class="action-button" data-target="burger">View Curry Recipe</button>
+    <button class="action-button" data-target="pasta">View Non-veg Recipe</button>
+    <button class="action-button" data-target="dessert">View Juice Recipe</button>
+  </div>
+
+  <script>
+    // Example functionality for buttons
+    const buttons = document.querySelectorAll('.action-button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const target = button.getAttribute('data-target');
+
+        // Navigate to specific pages based on the button clicked
+        if (target === 'salad') {
+          window.location.href = 'saladpantry.html';
+        } else {
+          alert(`You clicked on the ${target} recipe!`);
+        }
+      });
+    });
+
+    // Check if the page was visited in this session
+    if (sessionStorage.getItem('recipesVisited') === 'true') {
+      // Redirect to index.html if this page is refreshed
+      sessionStorage.removeItem('recipesVisited'); // Clear the session flag
+      window.location.href = "index.html";
+    } else {
+      // Mark as visited for this session
+      sessionStorage.setItem('recipesVisited', 'true');
+    }
+  </script>
+</body>
+</html>
